@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LuckyJet Predictor</title>
+  <style>
+    body {
+      background-color: black;
+      overflow: hidden;
+    }
+      
+    .container h1{
+        position: relative;
+        top: 10%;
+        color: #fff;
+        font-size: 35px;
+        font-weight: 40;
+    }
+      
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .button {
+      width: 200px;
+      height: 50px;
+      background-color: violet;
+      color: white;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .button:hover {
+      transform: translateY(5px);
+    }
+
+    .loader {
+      margin-top: 20px;
+      width: 50px;
+      height: 50px;
+      border: 5px solid #ffffff;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s linear infinite;
+      display: none; /* Скрываем колесо изначально */
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 80px;
+      color: green;
+      display: none;
+      font-weight: bolder;/* Скрываем результат изначально */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="button" onclick="startPrediction()">Predict</button>
+    <div id="loader" class="loader"></div>
+    <div id="result" class="result"></div>
+    <h1 id="timedisplay"></h1>
+  </div>
+  <script language="JavaScript">
+    if (top.location.search=="") {
+      pass = prompt('PASSWORD');
+    if (pass=='13382023') // Ваш пароль акивации
+    { alert('OK!') } else { alert('Text to admin!'), top.location.href="https://t.me/@gameder1" }//Адрес страниц на которую перейдет пользователь при ошибке
+    };
+  </script>
+  <script>
+    async function startPrediction() {
+      var button = document.querySelector('.button');
+      var loader = document.getElementById('loader');
+      var result = document.getElementById('result');
+      var time = document.getElementById('timedisplay');
+      button.style.display = 'none';
+      loader.style.display = 'block'; // Отображаем колесо
+      var date = new Date();
+          //По надобности условие ниже повторить с minutes и hours
+      var a = getRandomNumber(0, 5);
+      var hours = date.getHours();
+      var minutes = date.getMinutes()+4;
+      var seconds = date.getSeconds()+4;
+      if (a < 3){
+        result.textContent = "Signal "+getRandomNumber(1.79, 2.25) + ' X';
+      }
+      else if (a > 3){
+        result.textContent = "Signal "+getRandomNumber(2.50, 6.50) + ' X';
+      }
+      if (minutes >= 60){
+        minutes = minutes - 60;
+        hours = hours + 1
+      }
+      if (seconds >= 60){
+        seconds = seconds - 60;
+      }
+      if(minutes<10)
+      {
+        minutes = '0' + minutes;
+      }
+      if(seconds<10)
+      {
+        seconds = '0' + seconds;
+      }
+      time.innerHTML=("TIME: "+ hours + ' : ' + minutes + " : " + seconds);
+      loader.style.display = 'none';
+      result.style.display = 'block';
+      await sleep(60000);
+      button.style.display = 'block';
+    }
+
+    async function sleep(ms) {
+        await new Promise((resolve) => setTimeout(resolve, ms));
+    }
+    function getRandomNumber(min, max) {
+      return (Math.random() * (max - min) + min).toFixed(2);
+    }
+  </script>
+</body>
+</html>
