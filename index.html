@@ -94,12 +94,12 @@
       var a = getRandomNumber(0, 5);
       var hours = date.getHours();
       var minutes = date.getMinutes()+4;
-      var seconds = date.getSeconds()+4;
+      var seconds = date.getSeconds()+10;
       if (a < 3){
-        result.textContent = "Signal "+getRandomNumber(1.79, 2.25) + ' X';
+        result.textContent = "Signal "+getRandomNumber(1.79, 2.25) + " X\nSafe: 1.50x";
       }
       else if (a > 3){
-        result.textContent = "Signal "+getRandomNumber(2.50, 6.50) + ' X';
+        result.textContent = "Signal "+getRandomNumber(2.50, 6.50) + " X\nSafe: 2.00x";
       }
       if (minutes >= 60){
         minutes = minutes - 60;
